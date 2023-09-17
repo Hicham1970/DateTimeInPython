@@ -22,7 +22,7 @@ start_time = datetime.now()
 arrival_time = start_time + delta
 
 # Print the arrival datetime object
-print(arrival_time)
+print('the arrival time is:' + f'{arrival_time}')
 
 ##############################################################"
 

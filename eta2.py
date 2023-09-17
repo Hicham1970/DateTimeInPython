@@ -41,9 +41,9 @@ for i in range(n - 1):
     print(f"traffic_lights{i + 1}:")
     red_time = int(Write.Input(" - Red Light Time (hours):  ",
                                Colors.blue_to_cyan, interval=0.1))
-    gree_time = int(Write.Input(" - Green Light Time (hours):  ",
-                                Colors.blue_to_cyan, interval=0.1))
-    traffic_lights.append((red_time, gree_time))
+    green_time = int(Write.Input(" - Green Light Time (hours):  ",
+                                 Colors.blue_to_cyan, interval=0.1))
+    traffic_lights.append((red_time, green_time))
 
 # Estimation of the travel time, we look for the wait time first
 # Estimation of the average waiting time, we just need to average the wait time for every moment
@@ -74,15 +74,15 @@ print(
 
 # output current time and ETA:
 
-departure_time = date('2023-1-12 hour=12;minute:12 ;second:31')
+departure_time = datetime(2023, 1, 12, 12, 12, 31)
 
-current_time = datetime.now().strftime("%I:%M%p")
-eta = current_time + timedelta(days=estimated_traveled_time, hours=estimated_traveled_time,
-                               minutes=estimated_traveled_time)
-eta = eta.strftime("%I:%M%p")
-2
+current_time = datetime.now()
+eta = current_time + timedelta(days=day, hours=hour,
+                               minutes=minute)
+eta_str = eta.strftime("%I:%M%p")
+
 print(
-    f"Current time is {current_time}. If you start driving now , you will get there around {eta}")
+    f"Current time is {current_time.strftime('%I:%M%p')}. If you start driving now , you will get there around {eta_str}")
 
 # *************************************************************************************/
 # geolocalisation par l API
@@ -108,11 +108,14 @@ place2 = geolocator.geocode(Input_place2)
 Loc1_lat, Loc1_lon = (place1.latitude), (place1.longitude)
 Loc2_lat, Loc2_lon = (place2.latitude), (place2.longitude)
 
+#Create geopy location objects:
 location1 = (Loc1_lat, Loc1_lon)
 location2 = (Loc2_lat, Loc2_lon)
+#Calculate the distance between the 2 locations:
+distance_km = geodesic(location1, location2).kilometers
 
 # display the distance
-print(distance.distance(location1, location2).km, " kms")
+print(distance_km, "kms")
 
 # *************************************************************************************/
 ''' for step in steps: '''
