@@ -31,7 +31,7 @@ print(vt)
 days = t / 24
 print(days)
 
-# t = datetime.date(travel_time)
+t = datetime.date(travel_time)
 print(travel_time)
 
 t = time(hour=4, minute=22)

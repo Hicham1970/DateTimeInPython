@@ -7,13 +7,11 @@ import math
 from datetime import datetime, timedelta
 import datetime as dt
 
-
 print(Box.Lines("[+] Programme pour determiner l ETA [+] "))
 Write.Print("[+] This program for mariners [+]\n", Colors.purple_to_red)
 Write.Print("[+]distance entre 2 ports et eta [+]\n\n",
             Colors.purple_to_red)
 print(Box.DoubleCube("Exemple [x]"))
-
 
 # initialize Nominatim API
 geolocator = Nominatim(user_agent="geoapiExercises")
@@ -38,14 +36,14 @@ Loc2_lat, Loc2_lon = (place2.latitude), (place2.longitude)
 
 location1 = (Loc1_lat, Loc1_lon)
 location2 = (Loc2_lat, Loc2_lon)
-#Distance between ports:
-#dist = distance.distance(location1, location2).nm
+# Distance between ports:
+# dist = distance.distance(location1, location2).nm
 dist = geodesic(location1, location2).kilometers
 
 print(distance.distance(location1, location2).km, " kms")
 
 # Define the departure time in UTC
-#departure_time = datetime(2023, 1, 25, 16, 9, 10, tzinfo=dt.timezone.utc)
+# departure_time = datetime(2023, 1, 25, 16, 9, 10, tzinfo=dt.timezone.utc)
 
 
 #
@@ -53,12 +51,10 @@ print(distance.distance(location1, location2).km, " kms")
 speed_str = Write.Input(
     'Average travelling speed :', Colors.blue_to_green, interval=0.1)
 
-speed = float(speed_str)   # convert the string to a float
-
+speed = float(speed_str)  # convert the string to a float
 
 # Calculate the travelling time based on the distance and the speed of the vessel
 travelling_time = dist / speed
-
 
 # Define the starting time and time zone(tz=0 pour casa)
 starting_time = datetime(Write.Input(
@@ -73,7 +69,5 @@ if dt.timezone.dst(eta):
 
 # Print the ETA
 print("Estimated time of arrival:", eta.strftime("%Y-%m-%d %H:%M:%S %Z%z"))
-
-
 
 input('\n press any key to exit....')
